@@ -1,10 +1,10 @@
 'use strict';
 
-class UseForm{
-    constructor(){
-        this.loginFormCallback = function(data){
-            ApiConnector.login(data, callback => response(callback));
-        }
-        // this.registerFormCallback(data);
-    }
-}
+let user = new UserForm();
+user.loginFormCallback = data => ApiConnector.login(data, response => {
+    response.success ? location.reload() : user.setLoginErrorMessage(response.error)}
+);
+
+user.registerFormCallback = data => ApiConnector.register(data, response => {
+    response.success ? location.reload() : user.setRegisterErrorMessage(response.error)}
+);
