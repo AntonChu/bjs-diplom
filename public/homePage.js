@@ -39,16 +39,16 @@ money.addMoneyCallback = (data) => ApiConnector.addMoney(data, response => {
         ProfileWidget.showProfile(response.data);
         money.setMessage(response.success, 'Пополнение успешно проведено');
     }else{
-        money.setMessage(response.success, 'Ошибка проведения операции');
+        money.setMessage(response.success, response.error);
     }
 });
 
 money.conversionMoneyCallback = (data) => ApiConnector.convertMoney(data, response => {
     if(response.success){
         ProfileWidget.showProfile(response.data);
-        money.setMessage(response.success, 'Конвертация успешно проведено');
+        money.setMessage(response.success, 'Конвертация успешно проведена');
     }else{
-        money.setMessage(response.success, 'Ошибка проведения операции');
+        money.setMessage(response.success, response.error);
     }
 });
 
@@ -57,7 +57,7 @@ money.sendMoneyCallback = (data) => ApiConnector.transferMoney(data, response =>
         ProfileWidget.showProfile(response.data);
         money.setMessage(response.success, 'Перевод успешно проведен');
     }else{
-        money.setMessage(response.success, 'Ошибка проведения операции');
+        money.setMessage(response.success, response.error);
     }
 });
 
@@ -77,9 +77,9 @@ favorite.addUserCallback = (data) => ApiConnector.addUserToFavorites(data, respo
         favorite.clearTable();
         favorite.fillTable(response.data);
         money.updateUsersList(response.data);
-        money.setMessage(response.success, 'Пользователь успешно добавлен');
+        favorite.setMessage(response.success, 'Пользователь успешно добавлен');
     }else{
-        money.setMessage(response.success, 'Ошибка проведения операции');
+        favorite.setMessage(response.success, response.error);
     }
 });
 
@@ -88,8 +88,8 @@ favorite.removeUserCallback = (id) => ApiConnector.removeUserFromFavorites(id, r
         favorite.clearTable();
         favorite.fillTable(response.data);
         money.updateUsersList(response.data);
-        money.setMessage(response.success, 'Пользователь успешно удален');
+        favorite.setMessage(response.success, 'Пользователь успешно удален');
     }else{
-        money.setMessage(response.success, 'Ошибка проведения операции');
+        favorite.setMessage(response.success, response.error);
     }
 })
